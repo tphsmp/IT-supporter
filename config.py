@@ -1,4 +1,4 @@
-TOKEN = "5571190594:AAH2wuKobAsW13kYdG-OWaDj27S_3Bg29rQ"
+TOKEN = ""
 
 
 # сообщение выходит при отправке боту команды /start
