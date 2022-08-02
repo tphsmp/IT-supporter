@@ -1,6 +1,7 @@
 from aiogram import Bot, Dispatcher, executor, types
 from config import *
-from classes import TextRu, Commands, ButtonsGenerator
+from classes import *
+
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
@@ -9,13 +10,13 @@ dp = Dispatcher(bot)
 # Обработка команды /start
 @dp.message_handler(commands=['start'])
 async def command_start(message: types.Message):
-    await bot.send_message(message.from_user.id, TextRu.get_start_message(TextRu).format(message.from_user))
+    await bot.send_message(message.from_user.id, TextsRu.get_start_message(message.from_user))
 
 
 # Вывод списка команд по группам
 @dp.message_handler(commands=['about'])
 async def bot_message(message: types.Message):
-    await bot.send_message(message.from_user.id, TextRu.get_about_message(TextRu))
+    await bot.send_message(message.from_user.id, TextsRu.get_about_message())
 
 
 # Обработка команды /access"""
@@ -28,16 +29,16 @@ async def bot_message(message: types.Message):
 #     await message.answer("Выберите действие", reply_markup=keyboard)
 #
 
-"""Обработка команды /access"""
+# Обработка команды /access
 @dp.message_handler(commands=[Commands.access.value])
-async def command_access(message: types.Message, keyboard=None):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    ButtonsGenerator.make_buttons
+async def handle_command_access(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
+    ButtonsGenerator.make_buttons(TextsRu.get_access_buttons(), keyboard)
     await message.answer("Выберите действие", reply_markup=keyboard)
+
 
 # Обработка команды /software
 @dp.message_handler(commands=[Commands.soft.value])
-async def command_access(message: types.Message):
+async def handle_command_software(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_1 = types.KeyboardButton(text="Установить/обновить ПО")
     keyboard.add(button_1)
@@ -49,7 +50,7 @@ async def command_access(message: types.Message):
 
 # Обработка команды /ecp
 @dp.message_handler(commands=[Commands.ecp.value])
-async def command_access(message: types.Message):
+async def handle_command_ecp(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_1 = types.KeyboardButton(text="Получить/продлить ЭЦП")
     keyboard.add(button_1)
@@ -62,7 +63,7 @@ async def command_access(message: types.Message):
 
 # Обработка команды /equipment
 @dp.message_handler(commands=[Commands.equip.value])
-async def command_access(message: types.Message):
+async def handle_command_equipment(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_1 = types.KeyboardButton(text="Установка принтера/сканера/камеры и т.д.")
     keyboard.add(button_1)
@@ -77,7 +78,7 @@ async def command_access(message: types.Message):
 
 # Обработка команды /sap
 @dp.message_handler(commands=[Commands.sap.value])
-async def command_access(message: types.Message):
+async def handle_command_sap(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_1 = types.KeyboardButton(text="Сохранение/распечатка документов")
     keyboard.add(button_1)
@@ -90,7 +91,7 @@ async def command_access(message: types.Message):
 
 # Обработка команды /1C
 @dp.message_handler(commands=[Commands.ones.value])
-async def command_access(message: types.Message):
+async def handle_command_1c(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_1 = types.KeyboardButton(text="Сохранение/распечатка документов")
     keyboard.add(button_1)
@@ -103,7 +104,7 @@ async def command_access(message: types.Message):
 
 # Обработка команды /network
 @dp.message_handler(commands=[Commands.net.value])
-async def command_access(message: types.Message):
+async def handle_command_network(message: types.Message):
     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     button_1 = types.KeyboardButton(text="Доступ в интернет")
     keyboard.add(button_1)
@@ -118,19 +119,19 @@ async def command_access(message: types.Message):
 
 # Обработка команды /another
 @dp.message_handler(commands=[Commands.other.value])
-async def access(message: types.Message):
+async def handle_command_another(message: types.Message):
     await message.answer("Свяжитесь с специалистом сектора поддержки по номеру 5555")
 
 
 # Обработка кнопок раздела sap
 @dp.message_handler(lambda message: message.text == "Работа с программой" or message.text == "Другие вопросы")
-async def sono(message: types.Message):
+async def handle_buttons_sap(message: types.Message):
     await message.answer("Свяжитесь со специалистом сектора безнес-приложений по номеру 2124 или 2156")
 
 
 # Обработка прочих кнопок
 @dp.message_handler(lambda message: message.text != "Работа с программой" or message.text != "Другие вопросы")
-async def sono(message: types.Message):
+async def handle_other_buttons(message: types.Message):
     await message.answer("Свяжитесь со специалистом сектора поддержки по номеру 5555")
 
 
