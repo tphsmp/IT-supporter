@@ -1,5 +1,5 @@
 from aiogram import Bot, Dispatcher, executor, types
-from config import *
+from config import TOKEN
 from classes import *
 
 
@@ -18,16 +18,6 @@ async def command_start(message: types.Message):
 async def bot_message(message: types.Message):
     await bot.send_message(message.from_user.id, TextsRu.get_about_message())
 
-
-# Обработка команды /access"""
-# @dp.message_handler(commands=[Commands.access.value])
-# async def command_access(message: types.Message, keyboard=None):
-#     keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-#     for i in range(len(ACCESS_BUTTONS)):
-#         button_i = types.KeyboardButton(text=ACCESS_BUTTONS[i])
-#         keyboard.add(button_i)
-#     await message.answer("Выберите действие", reply_markup=keyboard)
-#
 
 # Обработка команды /access
 @dp.message_handler(commands=[Commands.access.value])
