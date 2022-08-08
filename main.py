@@ -1,7 +1,6 @@
-from aiogram import Bot, Dispatcher, executor, types
 from config import TOKEN
+from aiogram import Bot, Dispatcher, executor
 from classes import *
-
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
@@ -22,88 +21,49 @@ async def bot_message(message: types.Message):
 # Обработка команды /access
 @dp.message_handler(commands=[Commands.access.value])
 async def handle_command_access(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
-    ButtonsGenerator.make_buttons(TextsRu.get_access_buttons(), keyboard)
+    ButtonsGenerator.make_buttons(ButtonsGenerator.ACCESS_BUTTONS, keyboard)
     await message.answer("Выберите действие", reply_markup=keyboard)
 
 
 # Обработка команды /software
 @dp.message_handler(commands=[Commands.soft.value])
-async def handle_command_software(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_1 = types.KeyboardButton(text="Установить/обновить ПО")
-    keyboard.add(button_1)
-    button_2 = types.KeyboardButton(text="Проблемы с работой ПО")
-    keyboard.add(button_2)
-
+async def handle_command_software(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
+    ButtonsGenerator.make_buttons(ButtonsGenerator.SOFTWARE_BUTTONS, keyboard)
     await message.answer("Выберите действие", reply_markup=keyboard)
 
 
 # Обработка команды /ecp
 @dp.message_handler(commands=[Commands.ecp.value])
-async def handle_command_ecp(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_1 = types.KeyboardButton(text="Получить/продлить ЭЦП")
-    keyboard.add(button_1)
-    button_2 = types.KeyboardButton(text="Вход на портал по ЭЦП")
-    keyboard.add(button_2)
-    button_3 = types.KeyboardButton(text="Проблемы с авторизацией по ЭЦП")
-    keyboard.add(button_3)
+async def handle_command_software(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
+    ButtonsGenerator.make_buttons(ButtonsGenerator.ECP_BUTTONS, keyboard)
     await message.answer("Выберите действие", reply_markup=keyboard)
 
 
 # Обработка команды /equipment
 @dp.message_handler(commands=[Commands.equip.value])
-async def handle_command_equipment(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_1 = types.KeyboardButton(text="Установка принтера/сканера/камеры и т.д.")
-    keyboard.add(button_1)
-    button_2 = types.KeyboardButton(text="Подключение перефирийного оборудования")
-    keyboard.add(button_2)
-    button_3 = types.KeyboardButton(text="Проблемы с работой принтера/сканера")
-    keyboard.add(button_3)
-    button_4 = types.KeyboardButton(text="Прочие внешние устройства")
-    keyboard.add(button_4)
+async def handle_command_software(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
+    ButtonsGenerator.make_buttons(ButtonsGenerator.EQUIPMENT_BUTTONS, keyboard)
     await message.answer("Выберите действие", reply_markup=keyboard)
 
 
 # Обработка команды /sap
 @dp.message_handler(commands=[Commands.sap.value])
-async def handle_command_sap(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_1 = types.KeyboardButton(text="Сохранение/распечатка документов")
-    keyboard.add(button_1)
-    button_2 = types.KeyboardButton(text="Работа с программой")
-    keyboard.add(button_2)
-    button_3 = types.KeyboardButton(text="Другие вопросы")
-    keyboard.add(button_3)
+async def handle_command_software(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
+    ButtonsGenerator.make_buttons(ButtonsGenerator.SAP_BUTTONS, keyboard)
     await message.answer("Выберите действие", reply_markup=keyboard)
 
 
 # Обработка команды /1C
 @dp.message_handler(commands=[Commands.ones.value])
-async def handle_command_1c(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_1 = types.KeyboardButton(text="Сохранение/распечатка документов")
-    keyboard.add(button_1)
-    button_2 = types.KeyboardButton(text="Работа с программой")
-    keyboard.add(button_2)
-    button_3 = types.KeyboardButton(text="Другие вопросы")
-    keyboard.add(button_3)
+async def handle_command_software(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
+    ButtonsGenerator.make_buttons(ButtonsGenerator.ONES_BUTTONS, keyboard)
     await message.answer("Выберите действие", reply_markup=keyboard)
 
 
 # Обработка команды /network
 @dp.message_handler(commands=[Commands.net.value])
-async def handle_command_network(message: types.Message):
-    keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    button_1 = types.KeyboardButton(text="Доступ в интернет")
-    keyboard.add(button_1)
-    button_2 = types.KeyboardButton(text="Подключение к ЛВС/Интернет")
-    keyboard.add(button_2)
-    button_3 = types.KeyboardButton(text="Проблемы с локальной сетью")
-    keyboard.add(button_3)
-    button_4 = types.KeyboardButton(text="Проблемы с работой телефона")
-    keyboard.add(button_4)
+async def handle_command_software(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
+    ButtonsGenerator.make_buttons(ButtonsGenerator.NETWORK_BUTTONS, keyboard)
     await message.answer("Выберите действие", reply_markup=keyboard)
 
 
