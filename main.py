@@ -6,7 +6,7 @@ from database import Database
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
-BotBD = Database('base.db')
+BotBD = Database('database_name')
 
 
 # Обработка команды /start
