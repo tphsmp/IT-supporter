@@ -12,16 +12,16 @@ BotBD = Database('base.db')
 # Обработка команды /start
 @dp.message_handler(commands=['start'])
 async def command_start(message: types.Message):
-    #BotBD.user_recorder(message.from_user.id, message.from_user.first_name, message.from_user.last_name, message.text)
+    # BotBD.user_recorder(message.from_user.id, message.from_user.first_name, message.from_user.last_name, message.text)
     await bot.send_message(message.from_user.id, TextsRu.get_start_message(message.from_user))
-    #print(message.from_user)
+    # print(message.from_user)
     # print(message.from_id)
 
 
 # Вывод списка команд по группам
 @dp.message_handler(commands=['about'])
 async def bot_message(message: types.Message):
-    #BotBD.user_recorder(message.from_user.id, message.from_user.first_name, message.from_user.last_name)
+    # BotBD.user_recorder(message.from_user.id, message.from_user.first_name, message.from_user.last_name)
     await bot.send_message(message.from_user.id, TextsRu.get_about_message())
 
 
@@ -29,7 +29,7 @@ async def bot_message(message: types.Message):
 @dp.message_handler(commands=[Commands.access.value])
 async def handle_command_access(message: types.Message, keyboard=types.ReplyKeyboardMarkup(resize_keyboard=True)):
     ButtonsGenerator.make_buttons(ButtonsGenerator.ACCESS_BUTTONS, keyboard)
-    await message.answer("Выберите действие", reply_markup=keyboard)
+    await message.answer(TextsRu.get_preaction_message(), reply_markup=keyboard)
     print(message.text)
 
 

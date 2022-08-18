@@ -4,6 +4,8 @@ from aiogram import types
 
 class TextsRu:
     # сообщение выходит при отправке боту команды /start
+    PRE_ACTION_MESSAGE = 'Выберите действие'
+
     GREETING_MESSAGE = "Здравствуйте {0.first_name} {0.last_name}! Нажмите на кнопку меню и выберите /about \n " \
                        "Если среди предложенных вариантов нет пункта по вашему вопросу свяжитесь со " \
                        "службой поддержки \n"
@@ -15,6 +17,10 @@ class TextsRu:
                     "авторизацией по ЭЦП \n\n /equipment - установка перефирийного оборудования (принтеры. сканеры, " \
                     "камеры и т.д.) \n\n /sap - вопросы по SAP \n\n /1C - вопрос по 1С\n\n /network - локальная " \
                     "сеть, телефония, доступ в интернет \n\n /another - другой вопрос \n\n"
+
+    @staticmethod
+    def get_preaction_message(pre_action_message=PRE_ACTION_MESSAGE):
+        return pre_action_message
 
     @staticmethod
     def get_start_message(from_user, greeting_message=GREETING_MESSAGE):
